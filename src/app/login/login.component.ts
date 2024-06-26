@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, HttpClientModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']  // Asegúrate de que es 'styleUrls' y no 'styleUrl'
 })
 export class LoginComponent {
 
@@ -19,18 +19,26 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.http.post('http://127.0.0.1:5000/api/usuarios/login', {
+    this.http.post('http://127.0.0.1:5000/api/login/login', {
       correo: this.loginObj.correo,
       contrasenna: this.loginObj.contrasenna
     }).subscribe((res: any) => {
-      if (res.result) {
+      if (res.message === "Credenciales incorrectas") {
         alert("Error");
       } else {
         localStorage.setItem('user', JSON.stringify(res.usuario));
-        this.router.navigateByUrl('/dashboard');
+        if (res.message === "Bienvenido Usuario") {
+          this.router.navigateByUrl('/dashboard_usuario');
+        } else if (res.message === "Bienvenido Especialista") {
+          this.router.navigateByUrl('/dashboard_especialista');
+        }
         console.log(localStorage.getItem('user'));
       }
     });
+  }
+
+  registrarUsuario(){
+    this.router.navigateByUrl('/registro');
   }
 }
 
@@ -38,8 +46,8 @@ export class Login {
   correo: string;
   contrasenna: string;
 
-    constructor(){
-      this.correo = '';
-      this.contrasenna = '';
-    }
+  constructor(){
+    this.correo = '';
+    this.contrasenna = '';
+  }
 }

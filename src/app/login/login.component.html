@@ -14,7 +14,7 @@
             <button (click)="onLogin()" type="submit">Iniciar sesión</button>
 
             <div class="register-buttons">
-                <button type="button" onclick="window.location.href='/register-user'">Registrar usuario</button>
+                <button type="button" (click)="registrarUsuario()">Registrar usuario</button>
                 <button type="button" onclick="window.location.href='/register-expert'">Registrar experto</button>
             </div>
         </form>
