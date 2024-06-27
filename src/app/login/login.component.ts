@@ -26,13 +26,13 @@ export class LoginComponent {
       if (res.message === "Credenciales incorrectas") {
         alert("Error");
       } else {
-        localStorage.setItem('user', JSON.stringify(res.usuario));
+        console.log('User data received from server:', res.usuario); // Añadir un log para verificar la información recibida
+        localStorage.setItem('user', JSON.stringify(res.usuario)); // Asegúrate de que 'res.usuario' tiene la información completa del usuario
         if (res.message === "Bienvenido Usuario") {
           this.router.navigateByUrl('/dashboard_usuario');
         } else if (res.message === "Bienvenido Especialista") {
           this.router.navigateByUrl('/dashboard_especialista');
         }
-        console.log(localStorage.getItem('user'));
       }
     });
   }

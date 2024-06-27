@@ -1,0 +1,17 @@
+<div class="test-container" *ngIf="test">
+    <h2>{{ test.nombre }}</h2>
+    <p>{{ test.descripcion }}</p>
+    <form (ngSubmit)="submitTest()">
+      <div *ngFor="let pregunta of test.preguntas">
+        <p>{{ pregunta.texto }}</p>
+        <div *ngFor="let opcion of pregunta.opciones">
+          <label>
+            <input type="radio" name="respuesta-{{ pregunta.id_pregunta }}" [value]="opcion" [(ngModel)]="respuestas[pregunta.id_pregunta]">
+            {{ opcion }}
+          </label>
+        </div>
+      </div>
+      <button type="submit">Terminar Test</button>
+    </form>
+  </div>
+  

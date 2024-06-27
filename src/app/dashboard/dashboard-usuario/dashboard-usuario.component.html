@@ -1,1 +1,38 @@
-<p>Hola usuario</p>
+<div class="dashboard-container">
+    <div class="sidebar" [ngClass]="{'min-sidebar': isMinimized}">
+      <div class="nombre-app" [ngClass]="{'nombre-app-oculto': isMinimized}">
+        <span>SISVITA</span>
+      </div>
+      <div class="profile">
+        <img src="perfil.png" alt="Profile Picture">
+        <h2>Hola, {{ user?.nombre_perfil || 'Usuario' }}</h2>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="javascript:void(0)" (click)="toggleMenu('test')">
+              <span class="name-option" [ngClass]="{'name-option-oculto': isMinimized}">Test</span>
+            </a>
+            <ul [ngClass]="{'show': isMenuOpen['test']}">
+              <li><a href="javascript:void(0)" (click)="navigateTo('test-list')">Hacer Test</a></li>
+              <li><a href="javascript:void(0)" (click)="navigateTo('test-results')">Ver Resultados de Test</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="javascript:void(0)" (click)="navigateTo('configuracion')">
+              <span class="name-option" [ngClass]="{'name-option-oculto': isMinimized}">Configuración</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" (click)="logout()">
+              <span class="name-option" [ngClass]="{'name-option-oculto': isMinimized}">Salir</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

@@ -1,0 +1,22 @@
+<div class="test-list-container">
+    <h2>Tests Disponibles</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let test of tests">
+          <td>{{ test.nombre }}</td>
+          <td>{{ test.descripcion }}</td>
+          <td>
+            <button (click)="takeTest(test)">Hacer Test</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

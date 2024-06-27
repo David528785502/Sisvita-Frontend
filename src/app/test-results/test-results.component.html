@@ -1,0 +1,22 @@
+<div class="test-results-container">
+    <h2>Resultados de los Tests</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Resultado</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of results">
+          <td>{{ result.test_id }}</td>
+          <td>{{ result.resultado }}</td>
+          <td>
+            <span [ngClass]="{'green-circle': result.resultado.includes('bajo'), 'yellow-circle': result.resultado.includes('moderado'), 'red-circle': result.resultado.includes('alto')}"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
